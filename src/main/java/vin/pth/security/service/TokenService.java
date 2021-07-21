@@ -25,5 +25,11 @@ public interface TokenService {
    */
   boolean validateToken(String token, UserDetails userDetails);
 
+  /**
+   * 生成Token
+   *
+   * @param username 用户名，或者用户唯一标识
+   * @return Token
+   */
   String generateToken(String username);
 }

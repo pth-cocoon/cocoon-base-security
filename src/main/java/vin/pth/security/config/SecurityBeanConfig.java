@@ -13,11 +13,8 @@ import vin.pth.security.factory.DefaultTokenFactory;
 import vin.pth.security.factory.TokenFactory;
 import vin.pth.security.service.RbacService;
 import vin.pth.security.service.TokenService;
-import vin.pth.security.service.VerificationCodeService;
 import vin.pth.security.service.impl.RbacServiceDefaultImpl;
-import vin.pth.security.service.impl.SecurityUserServiceDefaultImpl;
 import vin.pth.security.service.impl.TokenServiceDefaultImpl;
-import vin.pth.security.service.impl.VerificationCodeServiceDefaultImpl;
 
 /**
  * bean注册中心，注册了大量对默认实现，使用了ConditionalOnMissingBean注解，支持覆盖实现
@@ -48,17 +45,11 @@ public class SecurityBeanConfig {
     return new TokenServiceDefaultImpl();
   }
 
-  @Bean
-  @ConditionalOnMissingBean(VerificationCodeService.class)
-  public VerificationCodeService verificationCodeService() {
-    return new VerificationCodeServiceDefaultImpl();
-  }
-
-  @Bean
-  @ConditionalOnMissingBean(UserDetailsService.class)
-  public UserDetailsService securityUserService() {
-    return new SecurityUserServiceDefaultImpl();
-  }
+//  @Bean
+//  @ConditionalOnMissingBean(UserDetailsService.class)
+//  public UserDetailsService securityUserService() {
+//    return new SecurityUserServiceDefaultImpl();
+//  }
 
   @Bean
   @ConditionalOnMissingBean(TokenFactory.class)
