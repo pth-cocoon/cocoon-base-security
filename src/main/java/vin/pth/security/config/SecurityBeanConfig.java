@@ -3,7 +3,6 @@ package vin.pth.security.config;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
@@ -33,23 +32,28 @@ public class SecurityBeanConfig {
     return new BCryptPasswordEncoder();
   }
 
+
+  /**
+   * 默认实现的RbacService，请根据业务自行实现
+   *
+   * @return RbacService
+   */
   @Bean
   @ConditionalOnMissingBean(RbacService.class)
   public RbacService rbacService() {
     return new RbacServiceDefaultImpl();
   }
 
+  /**
+   * 默认实现的TokenService，请根据业务自行实现
+   *
+   * @return TokenService
+   */
   @Bean
   @ConditionalOnMissingBean(TokenService.class)
-  public TokenService jwtService() {
+  public TokenService tokenService() {
     return new TokenServiceDefaultImpl();
   }
-
-//  @Bean
-//  @ConditionalOnMissingBean(UserDetailsService.class)
-//  public UserDetailsService securityUserService() {
-//    return new SecurityUserServiceDefaultImpl();
-//  }
 
   @Bean
   @ConditionalOnMissingBean(TokenFactory.class)
